@@ -2,9 +2,11 @@ package com.devmemije.api.apirest.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +15,7 @@ import com.devmemije.api.apirest.model.Estudiante;
 
 @RestController
 public class EstudianteController {
-	
+
 	@Autowired
 	private EstudianteService estudianteService;
 
@@ -49,10 +51,15 @@ public class EstudianteController {
 		estudianteService.guardar(estudiante);
 		return estudiante;
 	}
-	
+
 	@GetMapping("api/estudiantes")
-	public List<Estudiante> obtener(){
+	public List<Estudiante> obtener() {
 		return estudianteService.obtenerTodos();
+	}
+	
+	@GetMapping("api/estudiantes/{id}")
+	public Optional<Estudiante> obtenerEstudiante(@PathVariable("id") Integer id) {
+		return estudianteService.obtenerEstudiante(id);
 	}
 
 }
