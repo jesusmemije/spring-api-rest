@@ -26,4 +26,8 @@ public class EstudianteService {
 		return estudianteRepository.findById(id);
 	}
 
+	public void actualizar(Estudiante estudiante) {
+		estudianteRepository.save(estudiante);
+	}
+
 }
